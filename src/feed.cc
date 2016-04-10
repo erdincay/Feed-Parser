@@ -30,7 +30,7 @@ bool feed::parse(){
    				 else{
    				 	News.title[News.num_item] = item->get<String>("title");
    				 }
-   			//	 News.img_path[News.num_item] = item->get<Object>("thumbnail").get<String>("@url");
+   				 News.img_path[News.num_item] = item->get<Object>("thumbnail").get<String>("@url");
    				 News.link[News.num_item] = item->get<String>("link");
 			}
 		}catch(...){
@@ -41,28 +41,24 @@ return true;
 }
 
 bool feed::fetch_data(){
+int i;
+char* image;
+for(i=0;i<News.num_item;i++){
+
 	try{
-		download(News.title[News.num_item]+".jpg",News.img_path[News.num_item]);
-     	try{
+		image = download(News.title[News.num_item]+".jpg",News.img_path[News.num_item],true);
+      if(image!=NULL){
 
+					News.image[News.num_item] = image;
 
-					News.image[News.num_item] = temp;
-
- 	    }catch(...){
- 	    	Glib::RefPtr<Gdk::Pixbuf> temp ;
-   			temp = Gdk::Pixbuf::create_from_file(".backup.jpg")->scale_simple(100, 100, Gdk::INTERP_BILINEAR);
-   	       	News.image[News.num_item] = temp;
+ 	    }else{
+				image = copy_file(".backup.jpg");
+				News.image[News.num_item] = image;
  	    }
-		remove(((News.title[News.num_item]+".jpg")).c_str());
 
-		char* loc,*cwd;
-		getcwd(cwd,100);
-  	sprintf(loc,"%s/res/database.data",cwd);
-		ofstream of(loc,ios::binary);
-		cout<<this->title;
-		of.write((char*)this,sizeof(*this));
-  		of.close();
   	}catch(...){
   		return false;
   	}
+}
+
 }
