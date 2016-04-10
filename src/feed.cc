@@ -2,7 +2,6 @@
 bool feed::fetch(){
 
 		json.parse(download(url));
-		cout<<"@JSON";
 		if(json.has<Object>("rss"))
 			return true;
 		else
@@ -42,13 +41,12 @@ return true;
 }
 
 bool feed::fetch_data(){
-	cout<<"Fetching images baby";
 	try{
 		download(News.title[News.num_item]+".jpg",News.img_path[News.num_item]);
      	try{
-   			 	Glib::RefPtr<Gdk::Pixbuf> temp ;
-   			 	temp = Gdk::Pixbuf::create_from_file(News.title[News.num_item]+".jpg")->scale_simple(100, 100, Gdk::INTERP_BILINEAR);
-   	         	News.image[News.num_item] = temp;
+
+
+					News.image[News.num_item] = temp;
 
  	    }catch(...){
  	    	Glib::RefPtr<Gdk::Pixbuf> temp ;
