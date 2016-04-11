@@ -6,7 +6,6 @@
 #include <stdlib.h>
 #include "news.h"
 #include "curler.cc"
-#include <gtkmm.h>
 #include <thread>
 #include <stdio.h>
 using namespace std;
@@ -14,13 +13,13 @@ using namespace jsonxx;
 
 class feed{
 
-	Object json;
 	string url,title,link,desc,date,logo;
 	Array items;
 	news News;
 	Object *item;
 
 	public:
+		Object json;
 
 		feed(string url);
 
@@ -41,7 +40,7 @@ class feed{
 			return News.title[index];
 		}
 
-		Glib::RefPtr<Gdk::Pixbuf> get_item_img(int index){
+		string get_item_img(int index){
 			return News.image[index];
 		}
 
@@ -57,6 +56,6 @@ class feed{
 			return News;
 		}
 
-		
+
 
 };

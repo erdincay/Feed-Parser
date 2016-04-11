@@ -54,17 +54,17 @@ bool download(string url,string file)
 	curl_global_cleanup();
 return 1;
 }
-char* download(string url,bool flag = False){
-	char* html;
+string download(string url,bool flag){
+	std::ostringstream oss;
 	if(CURLE_OK == curl_read(url, oss))
 	{
 		// Web page successfully written to string
-		html = oss.str().c_str();
+		string html = oss.str();
 		curl_global_cleanup();
 		return html;
 	}
 	curl_global_cleanup();
-return NULL;
+return string("");
 }
 string download(string url){
 	std::ostringstream oss;
