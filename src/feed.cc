@@ -44,23 +44,27 @@ return true;
 bool feed::fetch_data(){
 char* cwd;
 int i;
-getcwd(cwd,100);
-string image;
+cwd = getcwd(cwd,100);
+char* image;
+std::ostringstream ss;
+ss<<cwd<<"/.backup.jpg";
+std::cout<<ss.str();
 for(i=0;i<News.num_item;i++){
 
 
-			if(News.img_path[News.num_item]!="")
-			image = download(News.img_path[News.num_item],true);
-			if(!image.empty()){
-				News.image[News.num_item] = image;
-
- 	    }else{
-				image = copy_file(string(string(cwd)+".backup.jpg").c_str());
-				std::cout<<image;
-				News.image[News.num_item] = image;
+			if(News.img_path[News.num_item]!=""){
+				image = download(News.img_path[News.num_item],true).c_str();
+			if(image != NULL){
+				News.image[News.num_item] = string(image);
 			}
 
-		std::cout<<News.image[News.num_item];
+			}else{
+				std::cout<<ss.str().c_str();
+				image =copy_file(ss.str().c_str());
+				std::cout<<image;
+				News.image[News.num_item] = string(image);
+			}
+	//	std::cout<<News.image[News.num_item];
 
 }
 

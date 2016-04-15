@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 // Code from http://www.cplusplus.com/forum/general/30215/
-string copy_file(const char* srcfilename)
+char * copy_file(const char* srcfilename)
   {
   long  len;
   char* buf = NULL;
@@ -40,7 +40,5 @@ string copy_file(const char* srcfilename)
   fclose( fp );
 
   // Open the destination file
-  if(buf == NULL)
-  return string("");
-  return string(buf);
+  return buf;
   }
