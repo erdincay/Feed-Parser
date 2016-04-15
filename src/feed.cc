@@ -1,4 +1,5 @@
 #include<utils.cc>
+#include <unistd.h>
 bool feed::fetch(){
 
 		json.parse(download(url));
@@ -20,46 +21,47 @@ bool feed::parse(){
 				desc = json.get<Object>("rss").get<Object>("channel").get<String>("description");
 				items = json.get<Object>("rss").get<Object>("channel").get<Array>("item");
 				News.num_item = 0;
-				std::cout<<items;
 				for (;News.num_item<items.size();News.num_item++){
 
 					item = new Object(items.get<Object>(News.num_item));
 
-						std::cout<<item->get<Object>("title").get<String>("#text");
-						std::cout<<News.title[News.num_item];
 
-					 	News.img_path[News.num_item] = item->get<Object>("thumbnail").get<String>("@url");
-   				 	News.link[News.num_item] = item->get<String>("link");
+						News.title[News.num_item] = item->get<Object>("title").get<String>("#text");
+						if(item->has<Object>("thumbnail"))
+						News.img_path[News.num_item] = item->get<Object>("thumbnail").get<String>("@url");
+						else
+						News.img_path[News.num_item] = "";
+						News.link[News.num_item] = item->get<String>("link");
 				}
 
 		}catch(...){
 			return false;
 		}
-
+		std::cout<<"Done";
 return true;
 }
 
 bool feed::fetch_data(){
+char* cwd;
 int i;
+getcwd(cwd,100);
 string image;
-std::cout<<News.num_item;
 for(i=0;i<News.num_item;i++){
 
-	try{
-		image = download(News.img_path[News.num_item],true);
-		std::cout<<image.size();
-      if(!image.empty()){
-			  std::cout<<image;
+
+			if(News.img_path[News.num_item]!="")
+			image = download(News.img_path[News.num_item],true);
+			if(!image.empty()){
 				News.image[News.num_item] = image;
 
  	    }else{
-				image = copy_file(".backup.jpg");
+				image = copy_file(string(string(cwd)+".backup.jpg").c_str());
+				std::cout<<image;
 				News.image[News.num_item] = image;
- 	    }
+			}
 
-  	}catch(...){
-  		return false;
-  	}
+		std::cout<<News.image[News.num_item];
+
 }
 
 }
