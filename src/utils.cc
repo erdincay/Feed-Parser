@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 // Code from http://www.cplusplus.com/forum/general/30215/
-char * copy_file(const char* srcfilename)
+char* copy_file(const char* srcfilename)
   {
   long  len;
   char* buf = NULL;

@@ -3,11 +3,13 @@
 bool feed::fetch(){
 
 		json.parse(download(url));
+
 		if(json.has<Object>("rss"))
 			return true;
 		else
 			return false;
 return false;
+
 }
 
 feed::feed(string url){
@@ -16,12 +18,18 @@ feed::feed(string url){
 
 bool feed::parse(){
 	try{
+		int x= 0;
 
 				title = json.get<Object>("rss").get<Object>("channel").get<String>("title");
 				desc = json.get<Object>("rss").get<Object>("channel").get<String>("description");
 				items = json.get<Object>("rss").get<Object>("channel").get<Array>("item");
 				News.num_item = 0;
-				for (;News.num_item<items.size();News.num_item++){
+				//	return value_map_.find(key)->second->get<T>();
+				while(x<=News.num_item) {
+							std::cout<<items.get_c();
+							//return value_map_.find(key)->second->get<T>();
+				}
+			/*	for (;News.num_item<items.size();News.num_item++){
 
 					item = new Object(items.get<Object>(News.num_item));
 
@@ -31,9 +39,12 @@ bool feed::parse(){
 						News.img_path[News.num_item] = item->get<Object>("thumbnail").get<String>("@url");
 						else
 						News.img_path[News.num_item] = "";
+						if(item->has<String>("link"))
 						News.link[News.num_item] = item->get<String>("link");
+						if(item->has<Object>("content"))
+						News.link[News.num_item] = item->get<Object>("content")->get<String>("link");
 				}
-
+*/
 		}catch(...){
 			return false;
 		}
@@ -42,30 +53,16 @@ return true;
 }
 
 bool feed::fetch_data(){
-char* cwd;
-int i;
-cwd = getcwd(cwd,100);
-char* image;
-std::ostringstream ss;
-ss<<cwd<<"/.backup.jpg";
-std::cout<<ss.str();
-for(i=0;i<News.num_item;i++){
-
-
+	int i;
+	char* image;
+	for(i=0;i<News.num_item;i++){
 			if(News.img_path[News.num_item]!=""){
-				image = download(News.img_path[News.num_item],true).c_str();
+			image = download(News.img_path[News.num_item],true).c_str();
 			if(image != NULL){
-				News.image[News.num_item] = string(image);
+				News.image[News.num_item] = image;
 			}
+		}
 
-			}else{
-				std::cout<<ss.str().c_str();
-				image =copy_file(ss.str().c_str());
-				std::cout<<image;
-				News.image[News.num_item] = string(image);
-			}
-	//	std::cout<<News.image[News.num_item];
-
-}
+ 	}
 
 }
