@@ -23,10 +23,11 @@ bool feed::parse(){
 				title = json.get<Object>("rss").get<Object>("channel").get<String>("title");
 				desc = json.get<Object>("rss").get<Object>("channel").get<String>("description");
 				items = json.get<Object>("rss").get<Object>("channel").get<Array>("item");
-				News.num_item = 0;
+				News.num_item = items.size();
 				//	return value_map_.find(key)->second->get<T>();
 				while(x<=News.num_item) {
-							std::cout<<items.get_c();
+							std::cout<<items.get<Object>(x).get_c();
+							x++;
 							//return value_map_.find(key)->second->get<T>();
 				}
 			/*	for (;News.num_item<items.size();News.num_item++){
