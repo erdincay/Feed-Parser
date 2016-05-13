@@ -4,5 +4,6 @@ int main(){
   auto x = feed("http://rss.cnn.com/rss/edition.rss");
   x.fetch();
   x.parse();
-//  x.fetch_data();
+  x.fetch_data();
+  std::cout<<sizeof(x);
 }

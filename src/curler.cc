@@ -56,10 +56,12 @@ return 1;
 }
 string download(string url,bool flag){
 	std::ostringstream oss;
+	std::cout<<url;
 	if(CURLE_OK == curl_read(url, oss))
 	{
 		// Web page successfully written to string
 		string html = oss.str();
+		std::cout<<html.size();
 		curl_global_cleanup();
 		return html;
 	}
