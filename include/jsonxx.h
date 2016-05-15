@@ -184,7 +184,7 @@ class Array {
 
 // A value could be a number, an array, a string, an object, a
 // boolean, or null
-class Value {
+  class Value {
  public:
 
   Value();

@@ -17,22 +17,25 @@ feed::feed(string url){
 }
 
 bool feed::parse(){
-
+				map <string,string> is;
 				title = json.get<Object>("rss").get<Object>("channel").get<String>("title");
 				desc = json.get<Object>("rss").get<Object>("channel").get<String>("description");
 				items = json.get<Object>("rss").get<Object>("channel").get<Array>("item");
-				std::cout << items.get<Object>(0) << std::endl;
+				auto x = json.get<Object>("rss").get<Object>("channel").get_c();
+				for (auto it:x) {
+					
+					cout << it.first << " " << *it.second<<"\n\n\n\n";
+
+				}
 				for (;News.num_item<items.size();News.num_item++){
 
 					item = new Object(items.get<Object>(News.num_item));
 
 
-						News.title[News.num_item] = item->get<String>("title");
+						this->News.title[News.num_item] = item->get<String>("title");
 						if(item->has<Object>("thumbnail"))
-						News.img_path[News.num_item] = item->get<Object>("thumbnail").get<String>("@url");
-						else
-						News.img_path[News.num_item] = ".";
-						News.link[News.num_item] = item->get<String>("link");
+						this->News.img_path[News.num_item] = item->get<Object>("thumbnail").get<String>("@url");
+						this->News.link[News.num_item] = item->get<String>("link");
 
 					}
 		std::cout<<"Done";
@@ -41,13 +44,13 @@ return true;
 
 bool feed::fetch_data(){
 	int i;
-	char* image;
+
 	for(i=0;i<News.num_item;i++){
+			std::cout<<this->News.img_path[News.num_item]<<endl;
 			if(News.img_path[News.num_item]!="."){
-			image = download(News.img_path[News.num_item],true).c_str();
-			if(image != NULL){
-				News.image[News.num_item] = image;
-			}
+			auto image = download(News.img_path[News.num_item],true);
+			News.image[News.num_item] = image;
+			std::cout<<image;
 		}
 
  	}
