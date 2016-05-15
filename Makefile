@@ -13,10 +13,10 @@ MAIN = $(ROOT_DIR)/test.cpp
 
 
 all:
-	g++ $(INCLUDE_H) $(INCLUDE_CC) $(MAIN) -o FeedReader -g $(CSTD) $(CURL_FLAGS) $(CFLAGS) -fpermissive
+	g++ $(INCLUDE_H) $(INCLUDE_CC) $(MAIN) -g $(CSTD) $(CURL_FLAGS) $(CFLAGS) -fpermissive
 
 run: all
-	./FeedReader
+	./a.out
 
 clean:
 	$(RM) FeedReader
