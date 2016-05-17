@@ -16,37 +16,43 @@ return false;
 feed::feed(string url){
 		this->url = url;
 }
-void feed::stripmaps(std::map<string, string> map,std::map<int, Object> maps);
+void strip_items(){
+
+	News.num_item = 1;
+	for (;News.num_item<items.size();News.num_item++){
+
+			Object item = items[News.num_item-1];
+
+			this->News.title[News.num_item] = item->get<String>("title");
+			if(item->has<Object>("thumbnail"))
+			this->News.img_path[News.num_item] = item->get<Object>("thumbnail").get<String>("@url");
+			this->News.link[News.num_item] = item->get<String>("link");
+
+		}
+}
+
 bool feed::parse(){
-				map <string,string> is;
-				std::map<int, Object> itemss;
-				title = json.get<Object>("rss").get<Object>("channel").get<String>("title");
-				desc = json.get<Object>("rss").get<Object>("channel").get<String>("description");
-				items = json.get<Object>("rss").get<Object>("channel").get<Array>("item");
+				int i = 0;
 				auto x = json.get<Object>("rss").get<Object>("channel").get_c();
 				for (auto it:x) {
 
 					cout << it.first << " " << *it.second<<"\n\n\n";
-					
 
+					if(it.first == "title")info["title"]=(*it.second).get<String>();
+					if(it.first == "link")info["link"]=(*it.second).get<String>();
+					if(it.first == "description")info["description"]=(*it.second).get<String>();
+					if(it.first == "language")info["language"]=(*it.second).get<String>();
+					if(it.first == "pubDate")info["pubDate"]=(*it.second).get<String>();
+					if(it.first == "copyright")info["copyright"]=(*it.second).get<String>();
+					if(it.first == "image")info["logo"]=(*it.second).get<Object>().get<String>("url");
+					if(it.first == "item"){
+							items[i]=(*it.second).get<Array>().get(i);
 					}
-					if(it.first == "title")is["title"]=(*it.second).get<String>();
-					if(it.first == "link")is["link"]=(*it.second).get<String>();
-
-					//if(it.first == "item")itemss[0]=(*it.second).get<Array>().get<Object>(1);
-				}
-				cout<<itemss[0];
-				for (;News.num_item<items.size();News.num_item++){
-
-					item = new Object(items.get<Object>(News.num_item));
-
-
-						this->News.title[News.num_item] = item->get<String>("title");
-						if(item->has<Object>("thumbnail"))
-						this->News.img_path[News.num_item] = item->get<Object>("thumbnail").get<String>("@url");
-						this->News.link[News.num_item] = item->get<String>("link");
-
 					}
+					this->strip_items();
+					std::cout<<"Done";
+}
+
 		std::cout<<"Done";
 return true;
 }
