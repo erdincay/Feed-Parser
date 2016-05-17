@@ -17,6 +17,7 @@ class feed{
 	Array items;
 	news News;
 	Object *item;
+	void stripmaps(std::map<string, string> map,std::map<int, Object> maps);
 
 	public:
 		Object json;

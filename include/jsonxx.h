@@ -299,7 +299,7 @@ class Array {
   template<typename T>
   T& get();
   template<typename T>
-  const T& get() const;
+  const T& g  et() const;
 
   bool empty() const;
 
