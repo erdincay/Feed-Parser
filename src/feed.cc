@@ -1,5 +1,6 @@
 #include<utils.cc>
 #include <unistd.h>
+#include <map>
 bool feed::fetch(){
 
 		json.parse(download(url));
@@ -18,15 +19,19 @@ feed::feed(string url){
 
 bool feed::parse(){
 				map <string,string> is;
+				std::map<int, Object> itemss;
 				title = json.get<Object>("rss").get<Object>("channel").get<String>("title");
 				desc = json.get<Object>("rss").get<Object>("channel").get<String>("description");
 				items = json.get<Object>("rss").get<Object>("channel").get<Array>("item");
 				auto x = json.get<Object>("rss").get<Object>("channel").get_c();
 				for (auto it:x) {
-					
-					cout << it.first << " " << *it.second<<"\n\n\n\n";
 
+					cout << it.first << " " << *it.second<<"\n\n\n\n";
+					if(it.first == "title")is["title"]=(*it.second).get<String>();
+					if(it.first == "link")is["link"]=(*it.second).get<String>();
+					if(it.first == "item")itemss[0]=(*it.second).get<Array>().get<Object>(1);
 				}
+				cout<<itemss[0];
 				for (;News.num_item<items.size();News.num_item++){
 
 					item = new Object(items.get<Object>(News.num_item));
