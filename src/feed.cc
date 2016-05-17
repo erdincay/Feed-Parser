@@ -24,8 +24,8 @@ void strip_items(){
 			Object item = items[News.num_item-1];
 
 			this->News.title[News.num_item] = item->get<String>("title");
-			if(item->has<Object>("thumbnail"))
 			this->News.img_path[News.num_item] = item->get<Object>("thumbnail").get<String>("@url");
+			std::cout<<this->News.img_path[News.num_item];
 			this->News.link[News.num_item] = item->get<String>("link");
 
 		}
