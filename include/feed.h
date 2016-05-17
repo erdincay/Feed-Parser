@@ -15,6 +15,7 @@ class feed{
 
 	map <string,string> info;
 	std::map<int, Object> items;
+	string url;
 	news News;
 	Object *item;
 	void strip_items();
@@ -28,7 +29,7 @@ class feed{
 		}
 		feed(){}
 		string get_topic(){
-			return title;
+			return info["title"];
 		}
 		bool fetch();
 		bool fetch_data();
