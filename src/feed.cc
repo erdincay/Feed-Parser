@@ -27,29 +27,7 @@ bool feed::parse(){
 				for (auto it:x) {
 
 					cout << it.first << " " << *it.second<<"\n\n\n";
-					switch (it.first) {
-						case "title":
-								is["title"]=(*it.second).get<String>();
-								break;
-						case "link":
-								is["link"]=(*it.second).get<String>();
-								break;
-						case "description":
-								is["description"]=(*it.second).get<String>();
-								break;
-						case "language":
-								is["language"]=(*it.second).get<String>();
-								break;
-						case "pubDate":
-								is["pubDate"]=(*it.second).get<String>();
-								break;
-						case "copyright":
-								is["copyright"]=(*it.second).get<String>();
-								break;
-						case "image":
-								is["logo"]=(*it.second).get<Object>().get<String>("url");
-								break;
-					}
+					
 
 					}
 					if(it.first == "title")is["title"]=(*it.second).get<String>();

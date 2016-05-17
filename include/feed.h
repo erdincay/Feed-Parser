@@ -13,12 +13,11 @@ using namespace jsonxx;
 
 class feed{
 
-	string url,title,link,desc,date,logo;
-	Array items;
+	map <string,string> info;
+	std::map<int, Object> items;
 	news News;
 	Object *item;
-	void stripmaps(std::map<string, string> map,std::map<int, Object> maps);
-
+	void strip_items();
 	public:
 		Object json;
 
