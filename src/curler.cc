@@ -51,10 +51,12 @@ bool download(string url,string file)
 		curl_global_cleanup();
 		return 0;
 	}
+	std::cout<<"Boom Boy";
 	curl_global_cleanup();
 return 1;
 }
-string download(string url,bool flag){
+/*
+void download(string url,std::string &image){
 	std::ostringstream oss;
 	std::cout<<url;
 	if(CURLE_OK == curl_read(url, oss))
@@ -63,11 +65,11 @@ string download(string url,bool flag){
 		string html = oss.str();
 		std::cout<<html.size();
 		curl_global_cleanup();
-		return html;
+		image = html;
 	}
 	curl_global_cleanup();
-return string("");
 }
+*/
 string download(string url){
 	std::ostringstream oss;
 	std::string html;

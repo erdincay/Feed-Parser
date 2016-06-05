@@ -1,6 +1,7 @@
 #include<utils.cc>
 #include <unistd.h>
 #include <map>
+#include <future>
 bool feed::fetch(){
 
 		json.parse(download(url));
@@ -35,7 +36,7 @@ bool feed::parse(){
 				int i = 0;
 				auto x = json.get<Object>("rss").get<Object>("channel").get_c();
 				for (auto it:x) {
-					
+
 					if(it.first == "title")info["title"]=(*it.second).get<String>();
 					if(it.first == "link")info["link"]=(*it.second).get<String>();
 					if(it.first == "description")info["description"]=(*it.second).get<String>();
@@ -44,7 +45,11 @@ bool feed::parse(){
 					if(it.first == "copyright")info["copyright"]=(*it.second).get<String>();
 					if(it.first == "image")info["logo"]=(*it.second).get<Object>().get<String>("url");
 					if(it.first == "item"){
-							items[i]=(*it.second).get<Array>().get<Object>(i);
+							auto u = (*it.second).get<Array>();
+							while(i<u.size()){
+									items[i]=u.get<Object>(i);
+									++i;
+						}
 					}
 					}
 					this->strip_items();
@@ -57,11 +62,17 @@ bool feed::fetch_data(){
 	int i;
 
 	for(i=0;i<News.num_item;i++){
+			cout<<"poop";
 			std::cout<<this->News.img_path[News.num_item]<<endl;
 			if(News.img_path[News.num_item]!="."){
-			auto image = download(News.img_path[News.num_item],true);
-			News.image[News.num_item] = image;
-			std::cout<<image;
+				std::vector<std::future<string>> downloads;
+				downloads.push_back (std::async(download,News.img_path[News.num_item]));
+				downloads[downloads.size()].wait();
+				for(auto &e : downloads) {
+    			std::cout << e.get() << std::endl;
+  			}
+//			std::thread t1(download,News.img_path[News.num_item],News.image[News.num_item]);
+			//t1.detach();
 		}
 
  	}

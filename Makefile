@@ -13,7 +13,7 @@ MAIN = $(ROOT_DIR)/test.cpp
 
 
 all:
-	g++ $(INCLUDE_H) $(INCLUDE_CC) $(MAIN) -g $(CSTD) $(CURL_FLAGS) $(CFLAGS) -fpermissive
+	g++ $(INCLUDE_H) $(INCLUDE_CC) $(MAIN) -g $(CSTD) $(CURL_FLAGS) $(CFLAGS) -fpermissive -pthread
 
 run: all
 	./a.out

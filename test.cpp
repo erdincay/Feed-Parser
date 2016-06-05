@@ -6,5 +6,4 @@ int main(){
    x.parse();
    x.fetch_data();
    std::cout<<sizeof(x);
-
 }
