@@ -1,10 +1,19 @@
 # Feed-Parser
-very robust RSS, Atom feed parser written in c++
+Robust RSS, Atom Feed Parser written in C++
 
-When i was looking into the various c++ parsers, not many were as usefull or donot have a good enough documentation.
-## Just enough
-This Library is good enough for almost all RSS operations.
+When I was looking into various C++ Feed Parsers, not many were as useful or did not have a good documentation.
+So I went ahead and started creating my own Feed Parser.
+This library is heavily based upon C++14
 
-## Dependencies
+## Advantages
 
-## Completely open source.
+ - It uses threads to manage the downloading process.
+ - The images downloaded are stored in memory and can be accessed very easily for use with other libraries
+ - Very low memory usage
+ - Customized for all feed types
+
+Hats off to @hijang and @Cheedong for their great libraries
+
+[jsonxx](https://github.com/hjiang/jsonxx)
+
+[xml2json](https://github.com/Cheedoong/xml2json)

@@ -27,8 +27,12 @@ void feed::strip_items(){
 
 			this->News.title[News.num_item] = item.get<String>("title");
 			this->News.link[News.num_item] = item.get<String>("link");
+			if(item.has<Object>("thumbnail"))
 			this->News.img_path[News.num_item] = item.get<Object>("thumbnail").get<String>("@url");
-	}		cout<<json;
+			else if(item.has<Object>("content"))
+			this->News.img_path[News.num_item] = item.get<Object>("content").get<Object>("thumbnail").get<String>("@url");
+
+	}
 
 
 }
@@ -38,22 +42,31 @@ bool feed::parse(){
 		auto x = json.get<Object>("rss").get<Object>("channel").get_c();
 		for (auto it:x) {
 			if(it.first == "title")info["title"]=(*it.second).get<String>();
-			if(it.first == "link")info["link"]=(*it.second).get<String>();
+			if(it.first == "link"){
+
+				if((*it.second).is<Array>())
+				info["link"]=(*it.second).get<Array>().get<Object>(1).get<String>("@href");
+				else
+				info["link"]=(*it.second).get<String>();
+
+			}
 			if(it.first == "description")info["description"]=(*it.second).get<String>();
 			if(it.first == "language")info["language"]=(*it.second).get<String>();
 			if(it.first == "pubDate")info["pubDate"]=(*it.second).get<String>();
 			if(it.first == "copyright")info["copyright"]=(*it.second).get<String>();
 			if(it.first == "image")info["logo"]=(*it.second).get<Object>().get<String>("url");
-			if(it.first == "item"){
+		  if(it.first == "item"){
+
 					auto u = (*it.second).get<Array>();
 					while(i<u.size()){
 							items[i]=u.get<Object>(i);
-							cout<<"\n"<<items[i]<<"\n";
 							++i;
-				}
+						}
+					this->strip_items();
+					return true;
+
 			}
 		}
-		this->strip_items();
 
 		return true;
 }
