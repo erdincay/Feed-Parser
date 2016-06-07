@@ -60,3 +60,5 @@ class feed{
 
 
 };
+
+#include<feed.cc>
