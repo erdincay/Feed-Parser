@@ -30,13 +30,10 @@ void feed::strip_items(){
 
 			this->News.title[News.num_item] = item.get<String>("title");
 			this->News.img_path[News.num_item] = item.get<Object>("thumbnail").get<String>("@url");
-			cout<<"\n"<<item.get<Object>("thumbnail").get<String>("@url")<<"\n";
+			//cout<<"\n"<<item.get<Object>("thumbnail").get<String>("@url")<<"\n";
 			this->News.link[News.num_item] = item.get<String>("link");
 
 		}
-
-		cout<<sizeof(this->News);
-		this->fetch_data();
 }
 
 bool feed::parse(){
@@ -67,15 +64,15 @@ return true;
 
 bool feed::fetch_data(){
 	int i;
-	cout<<sizeof(this->News);
-	std::vector<std::future<string>> downloads;
-	for(i=0;i<News.num_item;i++){
-		downloads.push_back(std::async(std::launch::async,download_file,this->News.img_path[i]));
-		//	std::cout<<this->News.img_path[i]<<endl;
-		//	News.Image[i] = download_file(this->News.img_path[i]).c_str();
-		}
+	cout<<sizeof(News);
+	std::vector< std::future< std::pair<string,int> >> downloads;
+	for(i=0;i<News.num_item;++i){
+		downloads.push_back(std::async(std::launch::async,download_file,this->News.img_path[i],i));
+	}
 		for(auto &e : downloads) {
-   std::cout << e.get() << std::endl;
-  }
-
+			auto r = e.get();
+			//cout<<"\n"<<r.second<<"  "<< r.first.c_str()<<"\n";
+   		this->News.image[r.second] = r.first.c_str();
+	  }
+		cout<<sizeof(News);
  	}

@@ -3,6 +3,7 @@
 #include <sstream>
 #include <iostream>
 #include "xml2json.hpp"
+#include <utility>
 using namespace std;
 // callback function writes data to a std::ostream
 static size_t data_write(void* buf, size_t size, size_t nmemb, void* userp)
@@ -54,21 +55,23 @@ bool download(string url,string file)
 return 1;
 }
 
-string download_file(string &url){
-
+std::pair<string,int> download_file(string url,int i){
+	std::pair<string,int> res;
 	curl_global_init(CURL_GLOBAL_ALL);
 	std::ostringstream oss;
 //	cout<<"\n"<<url<<"\n"<<curl_read(url,oss)<<"\n";
 	if(CURLE_OK == curl_read(url, oss))
 	{
-		// Web page successfully written to string
+		//File successfully written to string
 		string html = oss.str();
-	//	std::cout<<html.size();
-		return html;
+	  //std::cout<<html;
+		res.first = html;
+		res.second = i;
 		curl_global_cleanup();
+		return res;
 	}
 	curl_global_cleanup();
-	return ".\n";
+	return res;
 }
 
 string download(string url){
