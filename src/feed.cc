@@ -2,6 +2,10 @@
 #include <unistd.h>
 #include <map>
 #include <future>
+/*#define STB_IMAGE_IMPLEMENTATION
+#include "stb_image.h"
+*/
+
 bool feed::fetch(){
 
 		json.parse(download(url));
@@ -26,10 +30,13 @@ void feed::strip_items(){
 
 			this->News.title[News.num_item] = item.get<String>("title");
 			this->News.img_path[News.num_item] = item.get<Object>("thumbnail").get<String>("@url");
-			std::cout<<this->News.img_path[News.num_item];
+			cout<<"\n"<<item.get<Object>("thumbnail").get<String>("@url")<<"\n";
 			this->News.link[News.num_item] = item.get<String>("link");
 
 		}
+
+		cout<<sizeof(this->News);
+		this->fetch_data();
 }
 
 bool feed::parse(){
@@ -60,21 +67,15 @@ return true;
 
 bool feed::fetch_data(){
 	int i;
-
+	cout<<sizeof(this->News);
+	std::vector<std::future<string>> downloads;
 	for(i=0;i<News.num_item;i++){
-			cout<<"poop";
-			std::cout<<this->News.img_path[News.num_item]<<endl;
-			if(News.img_path[News.num_item]!="."){
-				std::vector<std::future<string>> downloads;
-				downloads.push_back (std::async(download,News.img_path[News.num_item]));
-				downloads[downloads.size()].wait();
-				for(auto &e : downloads) {
-    			std::cout << e.get() << std::endl;
-  			}
-//			std::thread t1(download,News.img_path[News.num_item],News.image[News.num_item]);
-			//t1.detach();
+		downloads.push_back(std::async(std::launch::async,download_file,this->News.img_path[i]));
+		//	std::cout<<this->News.img_path[i]<<endl;
+		//	News.Image[i] = download_file(this->News.img_path[i]).c_str();
 		}
+		for(auto &e : downloads) {
+   std::cout << e.get() << std::endl;
+  }
 
  	}
-
-}

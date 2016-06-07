@@ -47,29 +47,30 @@ bool download(string url,string file)
 	std::ofstream ofs(file);
 	if(CURLE_OK == curl_read(url, ofs))
 	{
-		std::cout<<"Downloaded Image";
 		curl_global_cleanup();
 		return 0;
 	}
-	std::cout<<"Boom Boy";
 	curl_global_cleanup();
 return 1;
 }
-/*
-void download(string url,std::string &image){
+
+string download_file(string &url){
+
+	curl_global_init(CURL_GLOBAL_ALL);
 	std::ostringstream oss;
-	std::cout<<url;
+//	cout<<"\n"<<url<<"\n"<<curl_read(url,oss)<<"\n";
 	if(CURLE_OK == curl_read(url, oss))
 	{
 		// Web page successfully written to string
 		string html = oss.str();
-		std::cout<<html.size();
+	//	std::cout<<html.size();
+		return html;
 		curl_global_cleanup();
-		image = html;
 	}
 	curl_global_cleanup();
+	return ".\n";
 }
-*/
+
 string download(string url){
 	std::ostringstream oss;
 	std::string html;
