@@ -56,15 +56,14 @@ return 1;
 }
 
 std::pair<string,int> download_file(string url,int i){
+
 	std::pair<string,int> res;
 	curl_global_init(CURL_GLOBAL_ALL);
 	std::ostringstream oss;
-//	cout<<"\n"<<url<<"\n"<<curl_read(url,oss)<<"\n";
 	if(CURLE_OK == curl_read(url, oss))
 	{
 		//File successfully written to string
 		string html = oss.str();
-	  //std::cout<<html;
 		res.first = html;
 		res.second = i;
 		curl_global_cleanup();
