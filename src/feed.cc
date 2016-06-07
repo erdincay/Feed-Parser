@@ -17,6 +17,8 @@ bool feed::fetch(){
 feed::feed(string url){
 		this->url = url;
 }
+
+
 void feed::strip_items(){
 
 	News.num_item = 1;

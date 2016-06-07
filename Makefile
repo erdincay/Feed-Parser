@@ -23,7 +23,10 @@ curler.o:
 	g++ -c -I $(INCLUDE_H) $(INCLUDE_CC)curler.cc -o $(INCLUDE_CC)curler.o
 
 xml2json.o:
-		g++ -c $(INCLUDE_H)xml2json.hpp -o $(INCLUDE_CC)xml2json.o
+	g++ -c $(INCLUDE_H)xml2json.hpp -o $(INCLUDE_CC)xml2json.o
+
+feed.o
+
 run: all
 	./a.out
 

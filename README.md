@@ -12,7 +12,7 @@ This library is heavily based upon C++14
  - Very low memory usage
  - Customized for all feed types
 
-Hats off to @hijang and @Cheedong for their great libraries
+Hats off to @hjiang and @Cheedoong for their great libraries
 
 [jsonxx](https://github.com/hjiang/jsonxx)
 
