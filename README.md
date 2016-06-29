@@ -20,4 +20,7 @@ Hats off to @hjiang and @Cheedoong for their great libraries
 
 include the header file ```feed.h``` in your program and place the Feed-Parser folder at the root directory of your project
  and Compile with the flags
+
 ```-I Feed-Parser/include/ -I Feed-Parser/src -lcurl -std=c++14 -lpthread```
+
+h1 Build System coming up.
