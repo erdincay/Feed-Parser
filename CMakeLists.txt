@@ -1,6 +1,8 @@
 cmake_minimum_required (VERSION 2.8.11)
 project (Feedparser)
+
 set(CMAKE_MODULE_PATH cmake)
+
 find_package(PTHREAD REQUIRED)
 find_package(CURL REQUIRED)
 
@@ -15,6 +17,6 @@ else()
         message(STATUS "The compiler ${CMAKE_CXX_COMPILER} has no C++11 support. Please use a different C++ compiler.")
 endif()
 
-
 add_subdirectory (src)
+
 add_subdirectory (test)
