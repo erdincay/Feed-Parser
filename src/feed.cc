@@ -1,7 +1,6 @@
 #include <unistd.h>
 #include <map>
 #include <future>
-#include "feed.h"
 
 bool feed::fetch(){
 

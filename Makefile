@@ -123,19 +123,6 @@ Feedparser/fast:
 	$(MAKE) -f src/CMakeFiles/Feedparser.dir/build.make src/CMakeFiles/Feedparser.dir/build
 .PHONY : Feedparser/fast
 
-#=============================================================================
-# Target rules for targets named Feedtest
-
-# Build rule for target.
-Feedtest: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 Feedtest
-.PHONY : Feedtest
-
-# fast build rule for target.
-Feedtest/fast:
-	$(MAKE) -f test/CMakeFiles/Feedtest.dir/build.make test/CMakeFiles/Feedtest.dir/build
-.PHONY : Feedtest/fast
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -145,7 +132,6 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... Feedparser"
-	@echo "... Feedtest"
 .PHONY : help
 
 
