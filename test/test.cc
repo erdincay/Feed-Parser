@@ -1,4 +1,4 @@
-#include <feed.cc>
+#include <feed.h>
 
 int main(){
    auto x = feed("http://www.forbes.com/feeds/popstories.xml");
