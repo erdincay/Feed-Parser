@@ -1,4 +1,3 @@
-
 #include <Feedparser/feed.h>
 
 bool feed::fetch(){

@@ -8,19 +8,19 @@
 #include <map>
 #include <string>
 
-#include "rapidxml/rapidxml.hpp"
-#include "rapidxml/rapidxml_utils.hpp"
-#include "rapidxml/rapidxml_print.hpp"
+#include <Feedparser/rapidxml/rapidxml.hpp>
+#include <Feedparser/rapidxml/rapidxml_utils.hpp>
+#include <Feedparser/rapidxml/rapidxml_print.hpp>
 
-#include "rapidjson/document.h"
-#include "rapidjson/prettywriter.h"
-#include "rapidjson/encodedstream.h"
-#include "rapidjson/stringbuffer.h"
-#include "rapidjson/reader.h"
-#include "rapidjson/writer.h"
-#include "rapidjson/filereadstream.h"
-#include "rapidjson/filewritestream.h"
-#include "rapidjson/error/en.h"
+#include <Feedparser/rapidjson/document.h>
+#include <Feedparser/rapidjson/prettywriter.h>
+#include <Feedparser/rapidjson/encodedstream.h>
+#include <Feedparser/rapidjson/stringbuffer.h>
+#include <Feedparser/rapidjson/reader.h>
+#include <Feedparser/rapidjson/writer.h>
+#include <Feedparser/rapidjson/filereadstream.h>
+#include <Feedparser/rapidjson/filewritestream.h>
+#include <Feedparser/rapidjson/error/en.h>
 
 // Avoided any namespace pollution.
 

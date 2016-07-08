@@ -10,9 +10,6 @@
 #include <map>
 #include <future>
 
-#include <boost/function.hpp>
-#include <boost/bind.hpp>
-
 using namespace std;
 using namespace jsonxx;
 
@@ -41,8 +38,7 @@ class feed{
 		bool fetch();
 		bool fetch_data();
 		bool parse();
-		std::pair<string,int> download_async(string url,int i){
-		}
+
 		string get_url(){
 			return url;
 		}
