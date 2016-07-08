@@ -15,7 +15,7 @@
 #ifndef RAPIDJSON_MEMORYBUFFER_H_
 #define RAPIDJSON_MEMORYBUFFER_H_
 
-#include <Feedparser/rapidjson.h>
+#include <Feedparser/rapidjson/rapidjson.h>
 #include <Feedparser/rapidjson/internal/stack.h>
 
 RAPIDJSON_NAMESPACE_BEGIN

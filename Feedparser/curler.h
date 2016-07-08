@@ -4,6 +4,7 @@
 #include <iostream>
 #include <Feedparser/xml2json.hpp>
 #include <utility>
+
 using namespace std;
 // callback function writes data to a std::ostream
 static size_t data_write(void* buf, size_t size, size_t nmemb, void* userp)

@@ -15,7 +15,7 @@
 #ifndef RAPIDJSON_ERROR_EN_H__
 #define RAPIDJSON_ERROR_EN_H__
 
-#include <Feedparser/rapidjson/error.h>
+#include <Feedparser/rapidjson/error/error.h>
 
 RAPIDJSON_NAMESPACE_BEGIN
 

@@ -1,12 +1,18 @@
 #include <Feedparser/news.h>
-#include "curler.cc"
 #include <Feedparser/jsonxx.h>
-#include <Feedparser/jsonxx.cc>
+#include <Feedparser/curler.h>
 #include <iostream>
 #include <sstream>
 #include <stdlib.h>
 #include <thread>
 #include <stdio.h>
+#include <unistd.h>
+#include <map>
+#include <future>
+
+#include <boost/function.hpp>
+#include <boost/bind.hpp>
+
 using namespace std;
 using namespace jsonxx;
 
@@ -26,13 +32,17 @@ class feed{
 		void create(string url){
 			this->url = url;
 		}
-		feed(){}
+		feed(){
+
+		}
 		string get_topic(){
 			return info["title"];
 		}
 		bool fetch();
 		bool fetch_data();
 		bool parse();
+		std::pair<string,int> download_async(string url,int i){
+		}
 		string get_url(){
 			return url;
 		}

@@ -15,7 +15,7 @@
 #ifndef RAPIDJSON_INTERNAL_SWAP_H_
 #define RAPIDJSON_INTERNAL_SWAP_H_
 
-#include "../rapidjson.h>
+#include <Feedparser/rapidjson/rapidjson.h>
 
 RAPIDJSON_NAMESPACE_BEGIN
 namespace internal {

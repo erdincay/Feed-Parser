@@ -17,7 +17,7 @@
 
 /*! \file document.h */
 
-#include "reader.h>
+#include <Feedparser/rapidjson/reader.h>
 #include <Feedparser/rapidjson/internal/meta.h>
 #include <Feedparser/rapidjson/internal/strfunc.h>
 #include <new>      // placement new

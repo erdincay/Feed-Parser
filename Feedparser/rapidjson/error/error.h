@@ -15,7 +15,7 @@
 #ifndef RAPIDJSON_ERROR_ERROR_H__
 #define RAPIDJSON_ERROR_ERROR_H__
 
-#include "../rapidjson.h>
+#include <Feedparser/rapidjson/rapidjson.h>
 
 /*! \file error.h */
 
