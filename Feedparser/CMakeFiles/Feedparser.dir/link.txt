@@ -1,0 +1,2 @@
+/usr/bin/ar qc libFeedparser.a  CMakeFiles/Feedparser.dir/xml2json.cc.o CMakeFiles/Feedparser.dir/curler.cc.o CMakeFiles/Feedparser.dir/jsonxx.cc.o CMakeFiles/Feedparser.dir/feed.cc.o
+/usr/bin/ranlib libFeedparser.a
