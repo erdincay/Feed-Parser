@@ -1,3 +1,0 @@
-/home/vyas/stunts/FeedParser/test/CMakeFiles/edit_cache.dir
-/home/vyas/stunts/FeedParser/test/CMakeFiles/rebuild_cache.dir
-/home/vyas/stunts/FeedParser/test/CMakeFiles/Feedtest.dir
