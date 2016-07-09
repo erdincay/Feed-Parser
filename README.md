@@ -5,12 +5,38 @@ When I was looking into various C++ Feed Parsers, not many were as useful or did
 So I went ahead and started creating my own Feed Parser.
 This library is heavily based upon C++14
 
+##Dependencies
+
+This library requires libcurl for curl.h
+
+``sudo apt-get install libcurl-dev``
+
+##Installation
+
+Clone this repository and
+```
+    cd FeedParser
+    cmake .
+    make
+    sudo make install
+```
+
+To use,
+
+include the header file ```Feedparser/feed.h``` in your project and compile with the flags
+
+ ``-lcurl -pthread -lFeedparser``
+
+
 ## Advantages
 
  - It uses threads to manage the downloading process.
- - The images downloaded are stored in memory and can be accessed very easily for use with other libraries
+ - The images downloaded are stored in memory and can be accessed very easily for use with other
  - Very low memory usage
  - Customized for all feed types
+
+
+Report by creating a issue if the library doesn't work for any feed.
 
 Hats off to @hjiang and @Cheedoong for their great libraries
 
@@ -18,9 +44,6 @@ Hats off to @hjiang and @Cheedoong for their great libraries
 
 [xml2json](https://github.com/Cheedoong/xml2json)
 
-include the header file ```feed.h``` in your program and place the Feed-Parser folder at the root directory of your project
- and Compile with the flags
+##TODO
 
-```-I Feed-Parser/include/ -I Feed-Parser/src -lcurl -std=c++14 -lpthread```
-
-h1 Build System coming up.
+I need to cleanup the entire code and also include more commenting here and there.
