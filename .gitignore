@@ -7,4 +7,3 @@ install_manifest.txt
 CTestTestfile.cmake
 *.a
 *.o
-*.cmake
