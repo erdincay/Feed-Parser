@@ -4,6 +4,8 @@
 // Contributors:
 //   Sean Middleditch <sean@middleditch.us>
 //   rlyeh <https://github.com/r-lyeh>
+#ifndef JSONXX_H
+#define JSONXX_H
 
 #pragma once
 
@@ -14,6 +16,7 @@
 #include <vector>
 #include <string>
 #include <sstream>
+
 
 // jsonxx versioning: major.minor-extra where
 // major = { number }
@@ -501,3 +504,5 @@ inline Object &Object::operator<<(const T &value) {
 std::ostream& operator<<(std::ostream& stream, const jsonxx::Value& v);
 std::ostream& operator<<(std::ostream& stream, const jsonxx::Object& v);
 std::ostream& operator<<(std::ostream& stream, const jsonxx::Array& v);
+
+#endif

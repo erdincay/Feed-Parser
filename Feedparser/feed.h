@@ -1,3 +1,6 @@
+#ifndef FEED_H_
+#define FEED_H_
+
 #include <Feedparser/news.h>
 #include <Feedparser/jsonxx.h>
 #include <Feedparser/curler.h>
@@ -12,6 +15,7 @@
 
 using namespace std;
 using namespace jsonxx;
+
 
 class feed{
 
@@ -62,6 +66,5 @@ class feed{
 			return News;
 		}
 
-
-
 };
+#endif

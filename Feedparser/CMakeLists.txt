@@ -1,10 +1,12 @@
 cmake_minimum_required (VERSION 2.8.11)
 
 set(SRC
+    xml2json.cc
+    curler.cc
     jsonxx.cc
     feed.cc
 )
-
+set(CMAKE_CXX_FLAGS -fpermissive)
 include_directories(BEFORE ${Feedparser_BINARY_DIR})
 
 include_directories(BEFORE ${Feedparser_SOURCE_DIR})
