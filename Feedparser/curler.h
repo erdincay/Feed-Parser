@@ -11,7 +11,6 @@
 
 using namespace std;
 
-
 //I didn't haves to create a class for this right now
 
 CURLcode curl_read(const std::string&, std::ostream&, long);

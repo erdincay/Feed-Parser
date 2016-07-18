@@ -1,6 +1,5 @@
 #include <Feedparser/curler.h>
 
-
 // callback function writes data to a std::ostream
 static size_t data_write(void* buf, size_t size, size_t nmemb, void* userp)
 {
@@ -53,39 +52,51 @@ return 1;
 
 std::pair<string,int> download_file(string url,int i){
 
-	std::pair<string,int> res;
 	curl_global_init(CURL_GLOBAL_ALL);
+
+	std::pair<string,int> res;
 	std::ostringstream oss;
+
 	if(CURLE_OK == curl_read(url, oss))
 	{
-		//File successfully written to string
 		string html = oss.str();
 		res.first = html;
 		res.second = i;
+
 		curl_global_cleanup();
+
 		return res;
 	}
+
 	curl_global_cleanup();
+
 	return res;
 }
 
 string download(string url){
+
+	curl_global_init(CURL_GLOBAL_ALL);
+
 	std::ostringstream oss;
 	std::string html;
+
 	if(CURLE_OK == curl_read(url, oss))
 	{
 		// Web page successfully written to string
 		if(!oss.str().find("<?xml")){
 		 	auto json_str = xml2json( oss.str().data() );
 		 	html = json_str;
-		}else{
+		}
+		else{
 			html = oss.str();
 		}
+
 		curl_global_cleanup();
 
 		return html;
 	}
+
 	curl_global_cleanup();
 
-return string("");
+	return string("");
 }

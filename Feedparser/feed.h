@@ -19,26 +19,28 @@ using namespace jsonxx;
 
 class feed{
 
+	Object json;
+	Object *item;
 	map <string,string> info;
 	std::map<int, Object> items;
 	string url;
 	news News;
-	Object *item;
-	void strip_items();
-	public:
-		Object json;
 
+	void strip_items();
+
+	public:
 		feed(string url);
 
 		void create(string url){
 			this->url = url;
 		}
-		feed(){
+		
+		feed(){}
 
-		}
 		string get_topic(){
 			return info["title"];
 		}
+
 		bool fetch();
 		bool fetch_data();
 		bool parse();
