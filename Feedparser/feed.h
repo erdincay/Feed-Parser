@@ -13,7 +13,6 @@
 #include <map>
 #include <future>
 
-using namespace std;
 using namespace jsonxx;
 
 
@@ -22,7 +21,7 @@ class feed{
 	Object json;
 	Object *item;
 	map <string,string> info;
-	std::map<int, Object> items;
+	map<int, Object> items;
 	string url;
 	news News;
 

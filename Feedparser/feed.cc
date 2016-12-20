@@ -64,18 +64,3 @@ bool feed::parse(){
 	return true;
 }
 
-bool feed::fetch_data(){
-
-	int i;
-	std::vector< std::future< std::pair<string,int> >> downloads;
-
-	for(i=0;i<News.num_item;++i){
-		downloads.push_back(std::async(std::launch::async,download_file,this->News.img_path[i],i));
-	}
-
-	for(auto &e : downloads){
-		std::pair<string,int> r = e.get();
-  		this->News.image[r.second] = r.first;
-	}
-
-}
